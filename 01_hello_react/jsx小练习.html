@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>jsx小练习</title>
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    // const data = ['Angular', 'React', 'Vue'];
+    const data2 = [
+      { id: 1, name: 'Angular' },
+      { id: 2, name: 'React' },
+      { id: 3, name: 'Vue' }
+    ];
+    const VDOM = (
+      <div>
+        <ul>
+          {
+            // data.map((item, index) => <li key={index}>{item}</li>)
+            data2.map(item => {return <li key={item.id}>{item.name}</li>})
+          }
+        </ul>
+      </div>
+    )
+    ReactDOM.render(VDOM, document.getElementById('root'));
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>jsx语法规则</title>
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    .title {
+      background-color: blueviolet;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const data = 'Hello React!!!'
+    let VDOM = (
+      <div>
+        <p className="title" style={{ color: 'white', fontSize: '50px' }}>
+          {data}
+        </p>
+        <div>
+          <input type="text" />
+        </div>
+      </div>
+    )
+    ReactDOM.render(VDOM, document.getElementById('root'));
+  </script>
+</body>
+
+</html>

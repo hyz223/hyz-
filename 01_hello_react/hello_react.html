@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      let VDOM = (
+        <div>
+          <h1>Hello, react!</h1>
+          <span>hahahah</span>
+        </div>
+      )
+      ReactDOM.render(VDOM, document.getElementById('root'));
+    </script>
+  </body>
+</html>
