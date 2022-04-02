@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>01_验证Diffing算法</title>
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    class Demo extends React.Component {
+      state = {
+        persons: [
+          { id: '001', name: 'yh001', age: 18 },
+          { id: '002', name: 'yh002', age: 19 },
+          { id: '003', name: 'yh003', age: 20 }
+        ]
+      }
+      render() {
+        return (
+          <div>
+            <button onClick={this.add}>添加</button>
+            <h4>使用index做key</h4>
+            <ul>
+              {
+                this.state.persons.map((i, index) => <li key={index}>{i.name}---{i.age}<input type="text" /></li>)
+              }
+            </ul>
+            <hr />
+            <h4>使用id做key</h4>
+            <ul>
+              {
+                this.state.persons.map(i => <li key={i.id}>{i.name}---{i.age}<input type="text" />z</li>)
+              }
+            </ul>
+          </div>
+        )
+      }
+      add = () => {
+        let person = { id: '004', name: 'yh004', age: 21 };
+        let arr = this.state.persons;
+        this.setState({ persons: [person, ...arr] })
+      }
+    }
+    ReactDOM.render(<Demo />, document.getElementById('root'));
+  </script>
+</body>
+
+</html>
