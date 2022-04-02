@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>08_函数式组件使用props</title>
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/prop-types/15.7.2/prop-types.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+
+    function Demo(props) {
+      let {name, age, sex} = props;
+      return (
+        <ul>
+          <li>姓名：{name}</li>
+          <li>性别：{sex}</li>
+          <li>年龄：{age}</li>
+        </ul>
+      )
+    }
+    Demo.propTypes = {
+      name: PropTypes.string.isRequired,
+      sex: PropTypes.string,
+      age: PropTypes.number
+    }
+    Demo.defaultProps = {
+      age: 30
+    }
+
+    const data = {
+      name: 'yh98',
+      // age: 18,
+      sex: '男'
+    }
+
+    ReactDOM.render(<Demo {...data} />, document.getElementById('root'));
+  </script>
+</body>
+
+</html>

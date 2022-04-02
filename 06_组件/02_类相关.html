@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>类相关</title>
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="text/javascript">
+    class Person {
+      constructor(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+      speak() {
+        console.log(this.name + ',' + this.age);
+      }
+    }
+    class Student extends Person {
+      constructor(name, age, grade) {
+        super(name, age);
+        this.grade = grade;
+      }
+    }
+    const p1 = new Person('yh98', 18);
+    console.log(p1);
+    p1.speak();
+
+    const s1 = new Student('yh01', 18, '高三');
+    console.log(s1);
+    s1.speak();
+
+  </script>
+</body>
+
+</html>

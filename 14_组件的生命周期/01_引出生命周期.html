@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>01_引出生命周期</title>
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    class Demo extends React.Component {
+      state = {
+        opacity: 1
+      }
+      render() {
+        console.log('render');
+        let { opacity } = this.state;
+        return (
+          <div>
+            <h1 style={{ opacity }}>分手了怎么办？</h1>
+            <button onClick={this.close}>女人只会影响我拔刀的速度</button>
+          </div>
+        )
+      }
+      componentDidMount() {
+        console.log('componentDidMount');
+        let { opacity } = this.state;
+        this.timer = setInterval(() => {
+          opacity -= 0.1;
+          if (opacity <= 0) {
+            opacity = 1;
+          }
+          this.setState({ opacity })
+        }, 200);
+      }
+      componentWillUnmount(){
+        console.log('componentWillUnmount');
+        clearInterval(this.timer);
+      }
+      close = () => {
+        console.log('close');
+        ReactDOM.unmountComponentAtNode(document.getElementById('root'));
+      }
+    }
+
+    ReactDOM.render(<Demo />, document.getElementById('root'));
+  </script>
+</body>
+
+</html>

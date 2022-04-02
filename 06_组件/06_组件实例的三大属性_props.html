@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>04_组件实例的三大属性_state</title>
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    class Demo extends React.Component {
+      state = {
+
+      };
+      render() {
+        const {name, sex, age} = this.props;
+        return (
+          <ul>
+            <li>姓名：{name}</li>
+            <li>年龄：{age}</li>
+            <li>性别：{sex}</li>
+          </ul>
+        )
+      }
+    }
+
+    const data = {
+      name: 'yh98',
+      age: 18,
+      sex: '男'
+    }
+
+    ReactDOM.render(<Demo {...data} />, document.getElementById('root'));
+  </script>
+</body>
+
+</html>

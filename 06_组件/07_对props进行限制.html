@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>07_对props进行限制</title>
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/prop-types/15.7.2/prop-types.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    class Demo extends React.Component {
+
+      state = {
+
+      };
+
+      static propTypes = {
+        name: PropTypes.string.isRequired,
+        age: PropTypes.number,
+        sex: PropTypes.string
+      }
+
+      static defaultProps = {
+        age: 20
+      }
+
+      render() {
+        const { name, age, sex } = this.props;
+        return (
+          <ul>
+            <li>姓名：{name}</li>
+            <li>性别：{age}</li>
+            <li>年龄：{sex}</li>
+          </ul>
+        )
+      }
+    }
+
+    const data = {
+      name: 'yh98',
+      // age: 18,
+      sex: '男'
+    }
+
+    ReactDOM.render(<Demo {...data} />, document.getElementById('root'));
+  </script>
+</body>
+
+</html>

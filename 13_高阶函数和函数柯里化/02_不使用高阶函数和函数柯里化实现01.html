@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>02_不使用高阶函数和函数柯里化实现01</title>
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    class Login extends React.Component {
+      state = {
+        username: '',
+        password: ''
+      };
+      render() {
+        return (
+          <form onSubmit={this.handleLogin}>
+            <label htmlFor="username">用户名：</label>
+            <input type="text" id="username" onChange={(event)=>{this.saveFormDataToState(event, 'username')}} autoComplete="off" /><br />
+            <label htmlFor="password">密码：</label>
+            <input type="password" id="password" onChange={(event)=>{this.saveFormDataToState(event, 'password')}} /><br />
+            <button>登录</button>
+          </form>
+        )
+      }
+      handleLogin = (event) => {
+        event.preventDefault();
+        console.log(this.state.username + ',' + this.state.password);
+      }
+      saveFormDataToState = (event, type) => {
+        this.setState({[type]: event.target.value})
+      }
+
+    }
+
+    ReactDOM.render(<Login />, document.getElementById('root'));
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>05_getSnapshotBeforeUpdate举例</title>
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    .list {
+      width: 200px;
+      height: 150px;
+      background-color: skyblue;
+      overflow: auto;
+    }
+
+    .item {
+      width: 100%;
+      height: 30px;
+      line-height: 30px;
+      background-color: lawngreen;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    class News extends React.Component {
+      state = {
+        newsArray: []
+      }
+      componentDidMount() {
+        let n = 1;
+        this.timer = setInterval(() => {
+          const { newsArray } = this.state;
+          const news = '新闻' + n;
+          n++;
+          this.setState({ newsArray: [news, ...newsArray] })
+        }, 1000);
+      }
+      componentWillUnmount() {
+        clearInterval(this.timer)
+      }
+      getSnapshotBeforeUpdate(){
+        return this.listDiv.scrollHeight;
+      }
+      componentDidUpdate(_, __, height) {
+        this.listDiv.scrollTop += this.listDiv.scrollHeight - height;
+        // this.listDiv.scrollTop += 30;
+      }
+      render() {
+        return (
+          <div className="list" ref={c => { this.listDiv = c }}>
+            {
+              this.state.newsArray.map((item, index) => {
+                return <div className="item" key={index}>{item}</div>
+              })
+            }
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<News />, document.getElementById('root'));
+  </script>
+</body>
+
+</html>

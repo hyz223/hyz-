@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>03_React生命周期_新</title>
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    class Father extends React.Component {
+      state = {
+        name: 'yh98',
+        age: 18
+      }
+      UNSAFE_componentWillMount() {
+        console.log('Father----->componentWillMount');
+      }
+      render() {
+        console.log('Father----->render');
+        return (
+          <div>
+            <h3>我是父组件，我的名字是：{this.state.name}，今年{this.state.age}岁了。</h3>
+            <button onClick={this.nextYear}>一年过去了</button>
+            <button onClick={this.death}>1000年过去，完犊子了</button>
+            <Son {...this.state} />
+          </div>
+        )
+      }
+      componentDidMount() {
+        console.log('Father----->componentDidMount');
+      }
+      componentWillUnmount() {
+        console.log('Father----->componentWillUnmount');
+      }
+      nextYear = () => {
+        this.setState({ age: this.state.age += 1 })
+      }
+      death = () => {
+        ReactDOM.unmountComponentAtNode(document.getElementById('root'));
+      }
+    }
+
+    class Son extends React.Component {
+      UNSAFE_componentWillReceiveProps(){
+        console.log('Son----->componentWillReceiveProps');
+      }
+      UNSAFE_componentWillMount() {
+        console.log('Son----->componentWillMount');
+      }
+      render() {
+        return (
+          <div>
+            <h4>我是子组件，我爸是：{this.props.name}，他今年{this.props.age}岁了。</h4>
+          </div>
+        )
+      }
+      componentDidMount() {
+        console.log('Son----->componentDidMount');
+      }
+      componentWillUnmount() {
+        console.log('Son----->componentWillUnmount');
+      }
+      shouldComponentUpdate(){
+        console.log('Son----->shouldComponentUpdate');
+        return true;
+      }
+      UNSAFE_componentWillUpdate(){
+        console.log('Son----->componentWillUpdate');
+      }
+      componentDidUpdate(){
+        console.log('Son----->componentDidUpdate');
+      }
+    }
+
+    // ReactDOM.render(<Demo />, document.getElementById('root'));
+    ReactDOM.render(<Father />, document.getElementById('root'));
+  </script>
+</body>
+
+</html>

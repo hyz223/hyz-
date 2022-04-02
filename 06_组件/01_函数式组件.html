@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>函数式组件</title>
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    function Demo() {
+      return <h1>我是函数式组件Demo</h1>
+    }
+
+    ReactDOM.render(<Demo></Demo>, document.getElementById('root'));
+  </script>
+</body>
+
+</html>
